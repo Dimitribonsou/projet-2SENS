@@ -6,11 +6,13 @@ import { ServiceSectionComponent } from "../../Components/HomePageComponent/serv
 import { PartenaireComponent } from "../../Components/HomePageComponent/partenaire/partenaire.component";
 import { StatistiqueComponent } from "../../Components/HomePageComponent/statistique/statistique.component";
 import { CommentaireComponent } from "../../Components/HomePageComponent/commentaire/commentaire.component";
+import { SubcribeComponent } from "../../Components/HomePageComponent/subcribe/subcribe.component";
+import { ContactComponent } from "../../Components/HomePageComponent/contact/contact.component";
 
 @Component({
   selector: 'app-home-page',
   standalone: true,
-  imports: [NavbarComponent, HomeScreenComponent, AboutHomeComponent, ServiceSectionComponent, PartenaireComponent, StatistiqueComponent, CommentaireComponent],
+  imports: [NavbarComponent, HomeScreenComponent, AboutHomeComponent, ServiceSectionComponent, PartenaireComponent, StatistiqueComponent, CommentaireComponent, SubcribeComponent, ContactComponent],
   templateUrl: './home-page.component.html',
   styleUrl: './home-page.component.css'
 })
