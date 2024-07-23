@@ -1,0 +1,15 @@
+.stat-item span
+{
+  font-size: 1.5em;
+}
+
+.stat
+{
+  margin-top: 80px;
+}
+@media screen  and (max-width:500px){
+  .stat-item span
+  {
+    font-size: 14px;
+  }
+}

@@ -1,0 +1,58 @@
+.service
+{
+  height: max-content;
+}
+.service-content
+{
+  position: relative;
+  display: block;
+  margin: 100px 0px 25px 0px;
+}
+
+.service-home
+{
+   height: 200px;
+   border-top-left-radius: 50px;
+   border-bottom-left-radius: 999px;
+   border-bottom-right-radius:999px;
+   border-top-right-radius: 0px;
+   color: white;
+   position: relative;
+}
+.service-item
+{
+  position: relative;
+  top: -100px;
+  left: 25px;
+}
+
+@media screen and (min-width:500px ) {
+  .service-box
+  {
+    min-width: 170px;
+  }
+}
+@media screen and (max-width:370px ) {
+  .service-box
+  {
+    min-width: 170px;
+  }
+}
+@media screen and (max-width:1000px){
+  .service-title
+  {
+     font-size: 12px;
+     text-align: center;
+  }
+}
+@media screen and (max-width:500px){
+  .service-title
+  {
+     font-size: 10px;
+     text-align: center;
+  }
+  .titre
+  {
+    font-size: 16px;
+  }
+}

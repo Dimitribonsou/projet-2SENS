@@ -11,6 +11,7 @@ body{
   box-sizing: border-box;
   list-style: none;
   font-family: var(--textFont);
+  font-size: 16px;
 }
 
 
@@ -21,6 +22,7 @@ body{
 {
   --first-color:#1B75D0;
   --second-color:#04AA6D;
+  --blue-opacity:#93C2F3;
   --text-white:#FFFBFB;
   --text-black:#000000;
   --navbarFont:'Roboto';
@@ -44,6 +46,13 @@ a{
 .bg-one
 {
   background-color: var(--first-color);
+}
+.bg-two
+{
+ background-color: var(--second-color);
+}
+.bg-blue-opacity{
+  background-color: var(--blue-opacity);
 }
 .font-one
 {
