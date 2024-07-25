@@ -1,0 +1,17 @@
+.footer
+{
+  min-height: 300px;
+  height: fit-content;
+}
+@media screen and (max-width:800px){
+  .footer-item
+  {
+      flex-direction: column;
+  }
+  .footer-content
+  {
+    justify-content: center;
+    align-items: center;
+  }
+}
+
