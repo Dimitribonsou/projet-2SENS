@@ -1,0 +1,39 @@
+.taks .header-text
+{
+  margin-left: -100px;
+}
+@media screen and (max-width:1000px){
+.taks{
+  .header-text
+  {
+    margin-left: 0;
+  }
+  p{
+    font-size:0.9rem
+  }
+}
+
+}
+@media screen and (max-width:800px){
+.taks p{
+  font-size:0.7rem
+}
+}
+@media screen and (max-width:500px){
+.taks p{
+  font-size:0.6rem;
+  span
+  {
+    font-size: 12px;
+  }
+}
+}
+@media screen and (max-width:400px){
+.taks p{
+  font-size:11px;
+  span
+  {
+    font-size: 12px;
+  }
+}
+}

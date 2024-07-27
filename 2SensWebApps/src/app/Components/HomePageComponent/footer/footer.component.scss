@@ -15,8 +15,24 @@
    justify-content: flex-start;
    align-items: center;
    gap: 25px;
+   a
+   {
+      font-size: 20px;
+      text-align: left;
+      transition: margin 0.3s ease-in-out;
+      &:hover
+      {
+        color: var(--second-color)!important;
+        font-weight: bold;
+      }
+   }
+   .footer-link a{
+    &:hover
+    {
+      margin-left: 10px;
+    }
+   }
 }
-
 .footer-content img
 {
   width: 100px;

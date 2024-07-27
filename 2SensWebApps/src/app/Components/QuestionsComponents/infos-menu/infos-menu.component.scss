@@ -1,0 +1,38 @@
+
+.info
+{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 25px;
+}
+@media screen  and (max-width:800px){
+  .info
+  {
+    justify-content: flex-start;
+    .text-infos
+    {
+      font-size: 0.6rem;
+    }
+  }
+}
+@media screen  and (max-width:500px){
+  .info
+  {
+    justify-content: flex-start;
+    .text-infos
+    {
+      font-size: 0.5rem;
+    }
+  }
+}
+@media screen  and (max-width:500px){
+  .info
+  {
+    justify-content: flex-start;
+    .text-infos
+    {
+      font-size: 0.5rem;
+    }
+  }
+}

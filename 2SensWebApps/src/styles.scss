@@ -24,7 +24,9 @@ body{
   --text-black:#000000;
   --navbarFont:'Roboto';
   --textFont:'Open Sans';
+  --text-red:red;
 }
+$font-size:14px;
 a{
   text-decoration: none;
 }
@@ -35,6 +37,10 @@ a{
 .text-two
 {
   color: var(--second-color);
+}
+.text-red
+{
+  color: var(--text-red);
 }
 .radius
 {
@@ -68,7 +74,7 @@ a{
 {
   background-color: var(--first-color);
   color: var(--text-white);
-  padding: 8px 15px;
+  padding: 10px 15px;
   border: none;
   border-radius: 10px;
   height: max-content;
@@ -78,7 +84,7 @@ a{
 {
   background-color: transparent;
   color: var(--first-color);
-  padding: 8px 15px;
+  padding: 10px 15px;
   border: 2px solid var(--first-color);
   border-radius: 10px;
   cursor: pointer;

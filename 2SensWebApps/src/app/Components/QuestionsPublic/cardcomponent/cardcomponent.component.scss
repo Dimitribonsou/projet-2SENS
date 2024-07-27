@@ -1,0 +1,53 @@
+.card
+{
+  width:40vw;
+  min-width: 300px;
+  display: flex;
+  align-self: flex-end;
+  img
+  {
+    width: 50px;
+  }
+}
+.card-stat
+{
+  width: 100%;
+  flex-wrap: wrap;
+}
+.card-resonse
+{
+  min-width: 100px;
+}
+.card-action
+{
+  min-width: 200px;
+}
+
+@media screen and (max-width:1000px){
+.card
+{
+  .user-name
+  {
+    font-size: 0.8rem;
+  }
+  img
+  {
+    width: 40px;
+  }
+  .card-body
+  {
+    .card-title
+    {
+      font-size: 1rem;
+    }
+    .card-text
+    {
+      font-size: .9rem;
+    }
+    .card-action
+      {
+        justify-content: center;
+      }
+  }
+}
+}
