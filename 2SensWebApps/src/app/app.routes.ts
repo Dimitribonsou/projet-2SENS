@@ -22,6 +22,11 @@ export const routes: Routes = [
     loadComponent:()=>import('./Pages/question-public/question-public.component')
   },
   {
+    path:'discutions',
+    title:'Listes des Discutions',
+    loadComponent:()=>import('./Pages/discutions/discutions.component')
+  },
+  {
     path:'**',
     title:'Page introuvable',
     loadComponent:()=>import('./Components/notfound/notfound.component')

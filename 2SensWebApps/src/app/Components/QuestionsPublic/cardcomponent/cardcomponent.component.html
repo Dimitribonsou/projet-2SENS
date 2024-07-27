@@ -20,8 +20,9 @@
        <span class="text-two fw-bold ms-2">15</span>
      </div>
      <div class="card-action d-flex justify-content-end align-items-center">
-       <a href="#" class="btn-one " >Repondre</a>
-       <a href="#" class="btn-two ms-4">Signaler</a>
+       <a *ngIf="showbtnrepondre" href="#" class="btn-one me-3" >Repondre</a>
+       <a *ngIf="showbtnvoirreponse" href="#" class="btn-one " >Voir les reponses</a>
+       <a *ngIf="showbtnsignaler" href="#" class="btn-two ms-4">Signaler</a>
      </div>
   </div>
   </div>
