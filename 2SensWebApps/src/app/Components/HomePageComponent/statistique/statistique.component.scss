@@ -7,9 +7,22 @@
 {
   margin-top: 80px;
 }
-@media screen  and (max-width:500px){
+@media screen  and (max-width:780px){
   .stat-item span
   {
     font-size: 14px;
+  }
+}
+
+@media screen  and (max-width:500px){
+  .stat-item span
+  {
+    font-size: 12px;
+  }
+}
+@media screen  and (max-width:350px){
+  .stat-item span
+  {
+    font-size: 10px;
   }
 }

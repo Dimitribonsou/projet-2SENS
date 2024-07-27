@@ -1,10 +1,10 @@
 .contact
 {
   width: 80vw;
-  height: 40vh;
+  height: 50vh;
     min-height: 500px;
    background-image: url('../../../../../public/assets/2sensImages/contact.webp');
-   background-position: center;
+  //  background-position: top right;
    background-repeat: no-repeat;
    background-size:cover;
    background-attachment: scroll;
@@ -15,12 +15,14 @@
 .formulaire
 {
   width: 50%;
+  min-width: 300px;
 }
 @media screen and (max-width:700px) {
     .contact
     {
       width: 100vw;
       justify-content: center;
+      background-position: center;
     }
     .formulaire
     {

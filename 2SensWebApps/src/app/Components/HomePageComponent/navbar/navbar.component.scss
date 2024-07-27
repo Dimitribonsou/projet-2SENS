@@ -10,6 +10,11 @@
     justify-content: space-between;
     padding: 20px  10px;
   }
+  .navbar-nav
+  {
+    box-sizing: border-box;
+    height: 50px;
+  }
 }
 @media screen and (max-width:980px){
   a.btn-one
@@ -20,13 +25,18 @@
     align-items: center;
   }
 }
+.navbar-nav li a{
+  padding:  10px;
+  border-bottom-width: 5px;
+  border-bottom-style: none;
+  box-sizing: border-box;
+}
 .navbar-nav>li>a:hover
 {
-   /* background-color: var(--first-color); */
   color:var(--first-color);
-  padding:  10px;
   /* border-radius: 5px; */
-  border-bottom: 5px solid var(--first-color);
+  border-bottom-style: solid;
+  border-bottom-color: var(--first-color);
   transition: color 0.4s ease-in;
   transition: border 0.4s ease-in-out;
 }
