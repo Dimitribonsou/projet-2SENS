@@ -13,11 +13,54 @@
   display: block;
   position: relative;
 }
+.infos
+{
+  width: 25vw;
+  min-width: 300px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap:25px;
+  position: absolute;
+  top: 25%;
+  left: 30%;
+  z-index: 999;
+  p{
+    font-size: 1.5rem;
+    text-align: left;
+  }
+  span,button
+  {
+    min-width: fit-content;
+    border-radius: 5px;
+  }
+}
+.back-blur
+{
+   width: 100%;
+   height: 100vh;
+   background-color:#333;
+   opacity: 0.3;
+   position: absolute;
+   top: 0;
+   left: 0;
+   z-index: 1;
+}
 .carousel-item
 {
   height: 85vh;
+  position: relative;
 }
 .carousel-item img
 {
   height: 100%;
+  z-index: -1;
+}
+
+@media screen  and (max-width:500px){
+ .infos
+ {
+   min-width: 250px;
+   left: 20%;
+ }
 }
