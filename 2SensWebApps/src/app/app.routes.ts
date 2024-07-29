@@ -19,7 +19,30 @@ export const routes: Routes = [
   {
     path:'questions',
     title:'Listes des Questions',
-    loadComponent:()=>import('./Pages/question-public/question-public.component')
+    loadComponent:()=>import('./Pages/question-public/question-public.component'),
+    children:[
+      {
+        path:'signaler',
+        title:"signaler une question",
+        loadComponent:()=>import('./Components/QuestionsComponents/signaler-question/signaler-question.component')
+      },
+      {
+        path:'reponses',
+        title:"Reponse des questions",
+        loadComponent:()=>import('./Components/QuestionsComponents/reponse-question/reponse-question.component')
+      }
+    ]
+
+  },
+  {
+    path:'signaler',
+    title:"signaler une question",
+    loadComponent:()=>import('./Components/QuestionsComponents/signaler-question/signaler-question.component')
+  },
+  {
+    path:'reponses',
+    title:"Reponse des questions",
+    loadComponent:()=>import('./Components/QuestionsComponents/reponse-question/reponse-question.component')
   },
   {
     path:'discutions',

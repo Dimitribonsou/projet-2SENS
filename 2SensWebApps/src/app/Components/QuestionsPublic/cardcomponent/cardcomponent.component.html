@@ -20,9 +20,9 @@
        <span class="text-two fw-bold ms-2">15</span>
      </div>
      <div class="card-action d-flex justify-content-end align-items-center">
-       <a *ngIf="showbtnrepondre" href="#" class="btn-one me-3" >Repondre</a>
-       <a *ngIf="showbtnvoirreponse" href="#" class="btn-one " >Voir les reponses</a>
-       <a *ngIf="showbtnsignaler" href="#" class="btn-two ms-4">Signaler</a>
+       <a *ngIf="showbtnrepondre"   class="btn-one me-3" [routerLink]="['/reponses']">Repondre</a>
+       <a *ngIf="showbtnvoirreponse" class="btn-one " [routerLink]="['/reponses']" >Voir les reponses</a>
+       <a *ngIf="showbtnsignaler"  class="btn-two ms-4" [routerLink]="['/signaler']">Signaler</a>
      </div>
   </div>
   </div>
