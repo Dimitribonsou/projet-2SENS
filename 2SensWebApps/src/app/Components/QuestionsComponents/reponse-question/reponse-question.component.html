@@ -1,7 +1,39 @@
 <div class="container-fluid reponse">
   <div class="reponse-header d-flex justify-content-between align-items-center gap-3 border-bottom-4 border-primary">
     <div class="col ">
-      <a [routerLink]="['/questions']"><i class="bi bi-arrow-left me-md-5 me-3 text-one"></i></a>
+      <!-- <a [routerLink]="['/questions']"><i class="bi bi-arrow-left me-md-5 me-3 text-one"></i></a> -->
+      <!-- Button trigger modal -->
+    <a class="cursor-pointer" href="#" data-bs-toggle="modal" data-bs-target="#exampleModal">
+      <i class="bi bi-arrow-left me-md-5 me-3 text-one"></i>
+    </a>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5 text-one text-header" id="exampleModalLabel">Cher Utilisateur   Quelle est la reponse qui vous a le plus aider ? </h1>
+        <!-- <button type="button" class="btn-close shadow-none" data-bs-dismiss="modal" aria-label="Close"></button> -->
+      </div>
+      <div class="modal-body">
+        <form action="">
+          <select class="form-select form-select-lg mb-3 shadow-none" aria-label="Large select example" required>
+            <option value="">Selectionnez le numero  de  la meilleur reponse</option>
+            <option value="1">
+              1  : <span class="user-name ms-2 fw-bold">Bonsou dimitri</span>
+            </option>
+            <option value="2">2 : <span class="user-name ms-2 fw-bold">Kamga paul</span></option>
+            <option value="3">3 : <span class="user-name ms-2 fw-bold">Nje Man</span></option>
+          </select>
+          <div class="modal-footer">
+            <!-- <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button> -->
+            <button type="submit" class="btn-one">Envoyer</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
       <img src="/assets/2sensImages/profil_man.png" alt="photo profil" class="img-fluid rounded-circle" >
       <span class="user-name ms-2 fw-bold">Bonsou dimitri</span>
     </div>
