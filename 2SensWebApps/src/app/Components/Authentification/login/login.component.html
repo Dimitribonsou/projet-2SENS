@@ -1,0 +1,44 @@
+<div class="container login d-flex justify-content-center align-items-center gap-3 mt-4">
+   <div class="col-md-7 col-12  d-flex flex-column justify-content-center align-items-center gap-3">
+     <h3>   BIENVENUE 👋</h3>
+     <div class="w-75">
+      <div class="col w-100 google-content ">
+        <a href="#" class="google-link">
+          <img src="assets/2sensImages/Google.png" alt=" logo de google">
+          <span class="fw-bold text-black">CONNECTEZ AVEC GOOGLE</span>
+        </a>
+      </div>
+
+      <div class="col my-3 d-flex justify-content-center other">
+         <span class="text-center other-login">OU CONNECTEZ VOUS AVEC EMAIL</span>
+      </div>
+      <div class="form-content mt-3">
+        <form action="">
+          <div class="col input-item my-3 ">
+             <i></i>
+             <img src="assets/2sensImages/Google.png" class="image" alt=" logo de google">
+             <input type="email" name="" id="" placeholder="Entrez votre email" class="form-control shadow-none rounded" required>
+          </div>
+          <div class="col input-item my-3">
+             <i></i>
+             <img src="assets/2sensImages/Google.png" class="image" alt=" logo de google">
+             <input type="password" name="" id="" placeholder="Entrez votre mot de passe" class="form-control shadow-none rounded" required>
+          </div>
+          <div class="col my-2 d-flex justify-content-end">
+             <a class="text-one" [routerLink]="['/forgot-password']">mot de passe oublier ?</a>
+          </div>
+          <div class="my-3 ">
+             <button type="submit" class="btn-one w-100">Connection</button>
+          </div>
+        </form>
+        <div class="my-3 d-flex justify-content-start align-items-center gap-3 w-100">
+           <span>je n'ai pas de compte ?</span>
+           <a [routerLink]="['/register']" class="text-one">Creer un compte</a>
+        </div>
+      </div>
+     </div>
+   </div>
+   <div class="bg-warning col-md-5">
+     <img src="assets/2sensImages/login.png" class="img-fluid w-100" alt="image de connection">
+   </div>
+</div>

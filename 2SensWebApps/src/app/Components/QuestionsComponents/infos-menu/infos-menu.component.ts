@@ -9,7 +9,7 @@ import { Component, Input } from '@angular/core';
 })
 export class InfosMenuComponent {
  @Input()
- libelle="New infos"
+ libelle="Infos"
 
  @Input()
  description="Vous etes sur le point d’avoir la solution a votre preocupation"

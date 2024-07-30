@@ -1,0 +1,44 @@
+.aboutHeader
+{
+  height:150px;
+  span
+  {
+     font-size: 2rem;
+     color: #fff;
+  }
+
+}
+.btn-question
+{
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  strong
+  {
+    display: none;
+  }
+}
+
+@media screen  and (max-width:700px){
+.btn-question
+{
+  position: fixed;
+  top: 80%;
+  right: 15px;
+  // gap: 25px;
+
+  strong
+  {
+    display: inline;
+    // font-size: 25px;
+  }
+  .btn-text
+  {
+    display: none;
+  }
+  .question:hover .btn-text
+  {
+    display:inline-flex;
+  }
+}
+}

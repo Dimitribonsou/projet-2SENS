@@ -1,0 +1,22 @@
+.payment-card
+{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 25px;
+  flex-wrap: wrap;
+ padding: 10px 15px;
+}
+
+@media screen  and (max-width:750px){
+.payment-card
+{
+  justify-content: center;
+  .payment-card-item
+  {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
+}
