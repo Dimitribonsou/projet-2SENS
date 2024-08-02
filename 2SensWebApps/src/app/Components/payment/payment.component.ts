@@ -8,6 +8,6 @@ import { RouterModule } from '@angular/router';
   templateUrl: './payment.component.html',
   styleUrl: './payment.component.scss'
 })
-export class PaymentComponent {
+export  class PaymentComponent {
 
 }

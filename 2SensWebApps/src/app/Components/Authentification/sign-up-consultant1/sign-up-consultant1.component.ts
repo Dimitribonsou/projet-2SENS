@@ -1,10 +1,12 @@
 import { Component } from '@angular/core';
 import { RouterModule } from '@angular/router';
+import { FooterComponent } from "../../HomePageComponent/footer/footer.component";
+import { NavbarComponent } from "../../HomePageComponent/navbar/navbar.component";
 
 @Component({
   selector: 'app-sign-up-consultant1',
   standalone: true,
-  imports: [RouterModule],
+  imports: [RouterModule, FooterComponent, NavbarComponent],
   templateUrl: './sign-up-consultant1.component.html',
   styleUrl: './sign-up-consultant1.component.scss'
 })

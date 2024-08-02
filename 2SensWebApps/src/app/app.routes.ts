@@ -72,8 +72,13 @@ export const routes: Routes = [
   },
   {
     path:'reponses',
-    title:"Reponse des questions",
+    title:"Repondre a la questions",
     loadComponent:()=>import('./Components/QuestionsComponents/reponse-question/reponse-question.component')
+  },
+  {
+    path:'reponses-users',
+    title:"Reponses de la question",
+    loadComponent:()=>import('./Components/QuestionsComponents/response-question-users/response-question-users.component')
   },
   {
     path:'question-payment',

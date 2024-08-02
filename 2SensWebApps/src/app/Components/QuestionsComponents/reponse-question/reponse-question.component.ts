@@ -1,21 +1,22 @@
 import { Component, inject } from '@angular/core';
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { ReponseItemComponent } from "../reponse-item/reponse-item.component";
 import { NavigationService } from '../../../Services/navigation.service';
 import { NgIf } from '@angular/common';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-reponse-question',
   standalone: true,
-  imports: [RouterModule, ReponseItemComponent,NgIf],
+  imports: [RouterModule, ReponseItemComponent,NgIf,ReactiveFormsModule,FormsModule],
   templateUrl: './reponse-question.component.html',
   styleUrl: './reponse-question.component.scss'
 })
 export default class ReponseQuestionComponent {
-  navigationservice=inject(NavigationService)
-  ngOnInit()
+  constructor(private router:Router){}
+
+  goTodiscution()
   {
-     this.navigationservice.showNabarComponent(false);
-    //  alert(this.navigationservice.IsnavActive)
+      this.router.navigate(['/discutions'])
   }
 }

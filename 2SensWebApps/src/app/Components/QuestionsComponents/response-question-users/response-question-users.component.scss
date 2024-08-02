@@ -1,0 +1,40 @@
+.text-header
+{
+  font-size: 15px!important;
+}
+.modal-body
+{
+  select
+  {
+    font-size: 14px!important;
+  }
+}
+.reponse
+{
+  .reponse-header
+  {
+    padding: 15px 0px;
+    border-bottom: 5px solid var(--first-color);
+  }
+  img{
+    width: 50px;
+  }
+}
+.box
+{
+  height: 200px;
+}
+
+@media screen and (max-width:500px){
+.header-date
+{
+   span
+   {
+    font-size: 0.9rem;
+   }
+}
+  .user-name
+  {
+    font-size: 0.6rem;
+  }
+}
