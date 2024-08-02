@@ -26,7 +26,9 @@
   left: 25px;
   .service-box
   {
-     height: 270px;
+
+     height: 280px;
+     padding: 15px 10px;
   }
 }
 
@@ -34,6 +36,10 @@
   .service-box
   {
     min-width: 150px;
+  }
+  .mt-link
+  {
+    margin-top: 35px;
   }
 
 }
@@ -51,6 +57,10 @@
   }
 }
 @media screen and (max-width:500px){
+  .service-box
+  {
+    height: 200px;
+  }
   .service-title
   {
      font-size: 10px;
@@ -59,6 +69,7 @@
   .service-text
   {
     font-size: 14px;
+    margin: 0;
   }
   .service-title
   {
@@ -70,7 +81,8 @@
   }
   .more
   {
-    font-size: 10px;
+    font-size: 12px;
+    margin-top: 10px;
   }
 }
 @media screen and (max-width:400px){
@@ -83,4 +95,22 @@
     font-size: 14px;
   }
 
+}
+@media   (min-width:1000px) and (max-width:1400px){
+  .service-box
+  {
+    height: 300px;
+   .service-text{
+     font-size: 14px;
+     margin: 0;
+   }
+    .mt-link
+    {
+      margin-top: 0px;
+    }
+    .more
+    {
+     font-size: 12px;
+    }
+  }
 }
