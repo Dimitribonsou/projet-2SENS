@@ -1,34 +1,54 @@
-const mongoose = require("mongoose");
-// const connectionString = "mongodb://localhost:27017/testMongoose";
-const connectionString = "mongodb://localhost/testMongoose";
-const Question = require("./Questions");
+const express = require("express");
+const app = express();
+const cors = require("cors");
+const bodyParser = require("body-parser");
+app.use(cors());
+app.use(bodyParser.urlencoded({ extends: true }));
+app.use(bodyParser.json());
+const connection = require("./connection");
 
-// creation de la connection
-async function ConnectDb() {
-  await mongoose.connect(connectionString);
-}
-ConnectDb()
-  .then(() => {
-    console.log("connexion reussie avec la base de donnees");
-    //creation de l'instance du model question definit dans le fichier Question.js
-    // const question = new Question({
-    //   libelle: "comment devenir developpeur",
-    //   description: "je veux savoir les etapes et par ou commencer",
-    // });
-    // enregistrer les informations dans le document(table) Question
-    // const result = Question.insertMany([
-    //   {
-    //     libelle: "dimidev",
-    //     description: "developpeur javascript",
-    //   },
-    //   {
-    //     libelle: "dimipro",
-    //     description: "Footballeur professionnel",
-    //   },
-    // ]);
-  })
-
-  .catch((error) => {
-    console.log(error.message);
-    ConnectDb();
+const port = 3000;
+app.get("", (req, res) => {
+  res.send("hello dimidev");
+});
+app.get("/newsletter", (req, res) => {
+  const query = "SELECT * FROM newsletter";
+  connection.query(query, (err, results) => {
+    if (err) throw err;
+    res.send(results);
   });
+});
+app.post("/Addnewsletter", (req, res) => {
+  const emailAdresse = req.body.email;
+  const query = "INSERT INTO newsletter (adresse) VALUES (?)";
+  connection.query(query, [emailAdresse], (err, results) => {
+    if (err) {
+      res
+        .status(500)
+        .send("erreur lors de l'enregistrement de l'email : ", err);
+    }
+
+    console.log("insertion reussit");
+    res.status(200).send("email enregistrer avec succes !");
+  });
+});
+app.post("/AddComment", (req, res) => {
+  const nom = req.body.nom;
+  const email = req.body.email;
+  const message = req.body.message;
+  const query = "INSERT INTO sugestion (nom,email,message) VALUES (?,?,?)";
+  connection.query(query, [nom,email,message], (err, results) => {
+    if (err) {
+      res
+        .status(500)
+        .send("erreur lors de l'enregistrement de l'email : ", err);
+    }
+
+    console.log("sugestion inserer avec success !");
+    res.status(200).send("sugestion enregistrer avec succes !");
+  });
+});
+
+app.listen(port, (err) => {
+  console.log(`serveur demarrer sur l'adresse http://localhost:${port}`);
+});
