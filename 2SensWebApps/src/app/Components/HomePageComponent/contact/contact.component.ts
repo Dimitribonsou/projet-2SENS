@@ -21,17 +21,14 @@ export class ContactComponent {
    homeservice=inject(HomepageService)
   SendComment()
   {
-    // alert(`hello ${this.nom} je vais envoyer votre email ${this.email} avec votre message : ${this.message} `)
-   const result:boolean= this.homeservice.AddComment(this.nom,this.email,this.message);
+    const result:boolean= this.homeservice.AddComment(this.nom,this.email,this.message);
+    alert(`Hello ${this.nom} nous sommes ravi 😍 d'avoir recu votre avis et nous prendrons note `)
    this.resetForm();
   }
   resetForm()
   {
-    const nom  =document.getElementById('name') as HTMLInputElement;
-    const email =document.getElementById('email') as HTMLInputElement;
-    const descritpion =document.getElementById('description') as HTMLInputElement;
-     nom.innerHTML='';
-     email.innerHTML='';
-     descritpion.innerHTML='';
+    this.nom='',
+    this.email=''
+    this.message=''
   }
 }

@@ -11,7 +11,7 @@
   <div class=" input-subcribe   mt-5">
 
     <form action="" [formGroup]="emailForm"  (ngSubmit)="SendData(email)">
-      <input type="email" class="form-control shadow-none " formControlName="emailAdress" [(ngModel)]="email" placeholder="entrer votre adresse email" required >
+      <input type="email" class="form-control shadow-none " formControlName="emailAdress" [(ngModel)]="email" placeholder="entrer votre adresse email"  required >
       <button type="submit" class=" py-2 px-4 text-white border-0 {{ emailForm.invalid ? 'bg-one' : 'bg-two' }} " id="btn" [disabled]="emailForm.invalid" >S'abonner</button>
     </form>
   </div>

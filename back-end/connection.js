@@ -4,7 +4,7 @@ const db=mysql.createConnection({
     host:'localhost',
     user:'root',
     password:'dimi123',
-    database:'2sens_test_db'
+    database:'2senswebapp_final_db'
 })
 
 db.connect((err)=>

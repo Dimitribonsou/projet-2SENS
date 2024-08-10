@@ -18,15 +18,16 @@ export class SubcribeComponent {
     }
   )
   email :string=""
+
   SendData( emailusers:string)
   {
-    // alert(`je vais envoyer l'email ${emailusers} tkt pas`)
     const result=  this.homeservice.AddAdresse(emailusers);
-    this.resetForm()
+    alert(` adresse email ${emailusers} a été ajouter a la newsletter vous serez notifier lors des nouvelles publications  `)
+    this.resetForm();
   }
   resetForm()
   {
-    const email =document.getElementById('email') as HTMLInputElement;
-     email.innerHTML='';
+    this.email=''
   }
+
 }

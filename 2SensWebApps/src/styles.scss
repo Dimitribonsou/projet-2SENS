@@ -80,6 +80,16 @@ a{
   height: max-content;
   cursor: pointer;
 }
+.btn-three
+{
+  background-color: var(--second-color);
+  color: var(--text-white);
+  padding: 10px 15px;
+  border: none;
+  border-radius: 10px;
+  height: max-content;
+  cursor: pointer;
+}
 .btn-two
 {
   background-color: transparent;

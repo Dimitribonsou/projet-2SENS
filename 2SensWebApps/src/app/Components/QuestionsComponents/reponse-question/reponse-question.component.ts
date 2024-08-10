@@ -1,7 +1,6 @@
 import { Component, inject } from '@angular/core';
 import { Router, RouterModule } from '@angular/router';
 import { ReponseItemComponent } from "../reponse-item/reponse-item.component";
-import { NavigationService } from '../../../Services/navigation.service';
 import { NgIf } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
