@@ -6,7 +6,7 @@
      <div class="col w-100 google-content ">
        <a href="#" class="google-link">
          <img src="assets/2sensImages/Google.png" alt=" logo de google">
-         <span class="fw-bold text-black">CREER UN COMPTE AVEC GOOGLE</span>
+         <span class=" text-black">CREER UN COMPTE AVEC GOOGLE</span>
        </a>
      </div>
 
@@ -14,26 +14,26 @@
         <span class="text-center other-login">OU</span>
      </div>
      <div class="form-content mt-3">
-       <form action="">
+       <form action="" [formGroup]="formsignup" (ngSubmit)="SendData()">
          <div class="col input-item my-3 ">
             <i></i>
             <i class="bi bi-person image"></i>
-            <input type="text" name="" id="" placeholder="Entrez votre nom" class="form-control shadow-none rounded" required>
+            <input type="text" name="" id="" formControlName="nom" [(ngModel)]="nom" placeholder="Entrez votre nom" class="form-control shadow-none rounded" required>
          </div>
          <div class="col input-item my-3 ">
           <i class="bi bi-envelope image"></i>
-            <input type="email" name="" id="" placeholder="Entrez votre email" class="form-control shadow-none rounded" required>
+            <input type="email" name="" id="" formControlName="email" [(ngModel)]="email" placeholder="Entrez votre email" class="form-control shadow-none rounded" required>
          </div>
          <div class="col input-item my-3 ">
           <i class="bi bi-telephone image"></i>
-            <input type="tel" name="" id="" placeholder="Entrez votre telephone" class="form-control shadow-none rounded" required>
+            <input type="tel" name="" id="" formControlName="telephone" [(ngModel)]="telephone" placeholder="Entrez votre telephone" class="form-control shadow-none rounded" required>
          </div>
          <div class="col input-item my-3">
           <i class="bi bi-lock image "></i>
-            <input type="password" name="" id="" placeholder="Entrez votre mot de passe" class="form-control shadow-none rounded" required>
+            <input type="password" name="" formControlName="password" id="" [(ngModel)]="password" placeholder="Entrez votre mot de passe" class="form-control shadow-none rounded" required>
          </div>
          <div class="my-3 ">
-            <button type="submit" class="btn-one w-100">Creer Compte</button>
+            <button type="submit" class=" w-100 {{ formsignup.invalid ? 'btn-one' : 'btn-three' }}" [disabled]="formsignup.invalid">Creer Compte</button>
          </div>
         </form>
         <div class="my-4 d-flex justify-content-around align-items-center gap-3 w-100">

@@ -16,6 +16,6 @@ export default class ReponseQuestionComponent {
 
   goTodiscution()
   {
-      this.router.navigate(['/discutions'])
+      this.router.navigateByUrl('/discutions');
   }
 }

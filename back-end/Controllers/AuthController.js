@@ -11,50 +11,97 @@ async function hashPassword(password) {
   return await bcrypt.hash(password, salt);
 }
 //*********************methode pour l'envoie des donnees au serveur************************** */
-const ConnectUser = async (req, res) => {
+const ConnectUser = async (req, res, next) => {
   try {
     let data = {
-      response: false,
+      iduser: null,
+      nom: null,
+      email: null,
+      mdp: null,
+      statut:false,
+      message: null,
     };
-    const nom = req.body.nom;
+    const email = req.body.email;
     const password = req.body.password;
+    console.log("email envoyer : " + email);
+    console.log("password envoyer : " + password);
+    const rep = "SELECT  * FROM `utilisateur` WHERE  `EMAIL`=?";
 
-    const rep = "SELECT  * FROM `utilisateur` WHERE  `USERNAME`=?";
-
-    db.query(rep, [nom], async (err, results, fields) => {
+    db.query(rep, [email], async (err, results, fields) => {
       if (err) {
         res.status(500).send("Une erreur s'est produite lors de la requête");
-        // return data;
+        return null;
       }
       if (results.length === 0) {
-        res.send("Nom d'utilisateur  invalide");
-        // return data;
+        data = {
+          iduser: null,
+          nom: null,
+          email: null,
+          mdp: null,
+          statut:false,
+          message: "Email invalid",
+        };
+        res.json(data);
+        return;
       }
       //comparer le mot de passe hacher stocker dans la base de donnee avec celui saisie par l'utilisateur
-      const passwordexist = await bcrypt.compare(password, results[0].PASSWORD);
-      if (!passwordexist) {
-        res.send("mot de passe invalide");
-        // return data;
-      }
-
-      // stocker les informations de l'utilisateur dans les variables de session (nom, photo, idUser)
-      req.session.idusers = results[0].ID_USER;
-      req.session.nom = results[0].USERNAME;
-      req.session.email = results[0].EMAIL;
-      data = {
-        iduser: req.session.idusers,
-        nom: req.session.nom,
-        email: req.session.email,
-      };
-      // si c'est un administrateur
-      if (results[0].ROLE === 1) {
-        // renvoyer vers l'interface de l'administrateur
-        console.log("adminnistrateur connecter");
+      else if (
+        results[0].PASSWORD != null &&
+        results[0].PASSWORD != undefined
+      ) {
+        const passwordexist = await bcrypt.compare(
+          password,
+          results[0].PASSWORD
+        );
+        console.log("password encrypter : " + passwordexist);
+        if (!passwordexist) {
+          data = {
+            iduser: null,
+            nom: null,
+            email: null,
+            mdp: null,
+            statut:false,
+            message: "Mot de passe Invalid",
+          };
+          res.json(data);
+          return;
+        }
+        // stocker les informations de l'utilisateur dans les variables de session (nom, photo, idUser)
+        req.session.idusers = results[0].ID_USER;
+        req.session.nom = results[0].USERNAME;
+        req.session.email = results[0].EMAIL;
+        req.session.password = results[0].PASSWORD;
+        data = {
+          iduser: req.session.idusers,
+          nom: req.session.nom,
+          email: req.session.email,
+          mdp: req.session.password,
+          statut:true,
+          message: "utilisateur connecter avec succes ! ",
+        };
+        // // si c'est un administrateur
+        // if (results[0].ROLE === 1) {
+        //   // renvoyer vers l'interface de l'administrateur
+        //   console.log("adminnistrateur connecter");
+        //   res.json(data);
+        //   return ;
+        // }
+        // renvoyer vers la page d'acceuil
+        console.log("utilisateur connecter avec succes ! ", data);
         res.json(data);
+        return;
+      } else {
+        data = {
+          iduser: null,
+          nom: null,
+          email: null,
+          mdp: null,
+          statut:false,
+          message: "Email et Mot de passe Incorect",
+        };
+        res.json(data);
+        return ;
       }
-      // renvoyer vers la page d'acceuil
-      console.log("utilisateur connecter avec succes ! ");
-      res.json(data);
     });
   } catch (err) {
     res.status(500).send("une erreur c'est produite : " + err);
@@ -74,7 +121,6 @@ InsertUser = async (req, res) => {
   const passwordhached = await hashPassword(password);
   let q =
     "INSERT INTO `utilisateur`( `USERNAME`, `EMAIL`, `PASSWORD`, `TELEPHONE`) VALUES (?,?,?,?)";
-
   db.query(
     q,
     [req.body.nom, req.body.email, passwordhached, req.body.telephone],
@@ -170,7 +216,7 @@ InsertQuestion = async (req, res) => {
 
   db.query(q, [idUsers, req.body.titre, req.body.description], (err) => {
     if (err) throw err;
-    res.status(500).send("Question Publier avec success !");
+    res.status(200).send("Question Publier avec success !");
   });
 };
 
@@ -180,10 +226,26 @@ const DeleteQuestions = async (req, res) => {
 
   db.query(q, [id], (err) => {
     if (err) throw err;
-    res.status(500).send("Question Supprimer avec success !");
+    res.status(200).send("Question Supprimer avec success !");
   });
 };
-
+const AllQuestion = async (req, res) => {
+  try {
+    const q =
+      "SELECT q.ID_QUESTION , titre ,DESCRIPTION,date(DATE_ENVOIE) as date,time(DATE_ENVOIE) as heure ,us.USERNAME ,us.ID_USER  FROM questions q INNER JOIN utilisateur us on us.ID_USER=q.ID_USER ORDER by ID_QUESTION DESC";
+    db.query(q, (err, results) => {
+      if (err)
+        res
+          .satus(500)
+          .send(
+            "une erreur c'est produite lors de l'executtion de la requete "
+          );
+      res.send(results);
+    });
+  } catch (err) {
+    res.status(500).send("une erreur c'est produite : " + err);
+  }
+};
 //#######################################  gerer les reponses       ####################################
 module.exports = {
   ConnectUser,
@@ -194,4 +256,5 @@ module.exports = {
   UpdateUserInfo,
   AddQuestions,
   DeleteQuestions,
+  AllQuestion,
 };

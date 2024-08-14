@@ -6,10 +6,24 @@
   <div class="col d-flex justify-content-end align-items-center my-3">
    <a class="btn-one  " [routerLink]="['/question']">Poser votre question</a>
   </div>
-  <div class="liste-card my-3 d-flex flex-column gap-3 justify-content-center align-items-center ">
-    <app-cardcomponent></app-cardcomponent>
-    <app-cardcomponent></app-cardcomponent>
-    <app-cardcomponent></app-cardcomponent>
-  </div>
+  @if(listeQuestion.length>0)
+  {
+        <div class="liste-card my-3 d-flex flex-column gap-3 justify-content-center align-items-center " *ngFor="let question of listeQuestion ">
+          <app-cardcomponent
+          date="{{ question.date | date }}"
+          titre="{{ question.titre }}"
+          description="{{ question.DESCRIPTION }}"
+            heure="{{ question.heure }}"
+            nom="{{ question.USERNAME }}"
+           idquestion=" {{ question.ID_QUESTION}}"
+            ></app-cardcomponent>
+      </div>
+  }
+  @else {
+    <div>
+      <p class="text-center fw-bold text-two">Aucune question existante dans la base de donnee </p>
+    </div>
+  }
+
 </div>
 <app-footer></app-footer>

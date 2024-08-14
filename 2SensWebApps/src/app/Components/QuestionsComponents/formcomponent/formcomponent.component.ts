@@ -31,7 +31,8 @@ export class FormcomponentComponent {
   {
     //verifier si les information de connection de l'utilisateur existe si c'est le cas cela supose qu'il est connecter
     const loginInfo= this.authservice.userData
-    if(loginInfo != null)
+    // if(loginInfo != null)
+    if(loginInfo == null)
     {
               //inserer les infos de la question dans la base de donnee
         this.questionservice.AddQuestion(this.titre,this.description)

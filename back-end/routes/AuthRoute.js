@@ -38,4 +38,5 @@ router.get("/UserList",authcontroller.AllUser);
 //router pour la gestion des question
 router.post("/NewQuestion", authcontroller.AddQuestions);
 router.post("/deleteQuestion/:id", authcontroller.DeleteQuestions);
+router.get("/QuestionsList", authcontroller.AllQuestion);
 module.exports=router

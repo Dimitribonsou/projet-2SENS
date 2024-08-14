@@ -6,7 +6,7 @@
       <div class="col w-100 google-content ">
         <a href="#" class="google-link">
           <img src="assets/2sensImages/Google.png" alt=" logo de google">
-          <span class="fw-bold text-black">CONNECTEZ AVEC GOOGLE</span>
+          <span class=" text-black">CONNECTEZ AVEC GOOGLE</span>
         </a>
       </div>
 
@@ -14,20 +14,20 @@
          <span class="text-center other-login">OU CONNECTEZ VOUS AVEC EMAIL</span>
       </div>
       <div class="form-content mt-3">
-        <form action="">
+        <form action="" [formGroup]="formlogin" (ngSubmit)="SendData()">
           <div class="col input-item my-3 ">
             <i class="bi bi-envelope image"></i>
-             <input type="email" name="" id="" placeholder="Entrez votre email" class="form-control shadow-none rounded" required>
+             <input type="email" name="" id="" formControlName="email" [(ngModel)]="email" placeholder="Entrez votre email" class="form-control shadow-none rounded" required>
           </div>
           <div class="col input-item my-3">
             <i class="bi bi-lock image"></i>
-             <input type="password" name="" id="" placeholder="Entrez votre mot de passe" class="form-control shadow-none rounded" required>
+             <input type="password" name="" id="" formControlName="password" [(ngModel)]="password" placeholder="Entrez votre mot de passe" class="form-control shadow-none rounded" required>
           </div>
           <div class="col my-2 d-flex justify-content-end">
              <a class="text-one" [routerLink]="['/forgot-password']">mot de passe oublier ?</a>
           </div>
           <div class="my-3 ">
-             <button type="submit" class="btn-one w-100">Connection</button>
+             <button type="submit" class="{{ formlogin.invalid ? 'btn-one' : 'btn-three' }} w-100" [disabled]="formlogin.invalid">Connection</button>
           </div>
         </form>
         <div class="my-3 d-flex justify-content-start align-items-center gap-3 w-100">

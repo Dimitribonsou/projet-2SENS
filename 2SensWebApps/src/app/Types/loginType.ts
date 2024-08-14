@@ -1,5 +1,6 @@
 export interface loginType {
   iduser:number,
   nom:string,
-  email:string
+  email:string,
+  statut?:boolean
 }

@@ -6,27 +6,47 @@ import {loginType} from './../Types/loginType'
   providedIn: 'root'
 })
 export class AuthService {
-public userData:loginType | null=null
+public userData!:loginType
+islogin!:boolean
   constructor(private http:HttpClient) { }
   url="http://localhost:3000";
-  isUserLogin(username:string,password:string)
+  isUserLogin(email:string,password:string)
   {
-    this.http.post(this.url.concat('/Login'),{nom:username,password:password}).subscribe(
+    this.http.post(this.url.concat('/Login'),{email:email,password:password}).subscribe(
       (response) => {
-        this.userData=response as loginType;
-        console.log('Utilisateur connecter avec  succès');
-        return true;
+        this.userData=response as loginType ;
+        console.log("reponse retournee par le serveur : ",response)
       },
       (error: HttpErrorResponse) => {
-        this.userData=null
         console.error('Error user Login:', error);
-        return false;
       }
     );
-    return false
+    //gerer le probleme de promesse pour terminer l'authentification
+    if( this.userData.statut === true)
+      {
+          console.log('dimidev connecter avec  succès  : ',this.userData);
+          return true;
+      }
+      else
+      {
+        console.log("Utilisateur non connecter !")
+        return false
+      }
   }
-  CreateAccount()
+  CreateAccount(username:string,password:string,email:string,tel:string)
   {
-    
+    this.http.post(this.url.concat('/NewAccount'),{
+      nom:username,
+      password:password,
+      email:email,
+      telephone:tel
+    }).subscribe(
+      (response) => {
+        console.log('Utilisateur enregistrer avec  succès');
+      },
+      (error: HttpErrorResponse) => {
+        console.error('Error user reguster:', error);
+      }
+    );
   }
 }

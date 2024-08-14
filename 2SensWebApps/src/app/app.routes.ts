@@ -41,7 +41,7 @@ export const routes: Routes = [
 
   },
   {
-    path:'signaler',
+    path:'signaler/:id',
     title:"signaler une question",
     loadComponent:()=>import('./Components/QuestionsComponents/signaler-question/signaler-question.component')
   },
@@ -71,7 +71,7 @@ export const routes: Routes = [
     loadComponent:()=>import('./Components/Authentification/forgot-password/forgot-password.component')
   },
   {
-    path:'reponses',
+    path:'reponses/:id',
     title:"Repondre a la questions",
     loadComponent:()=>import('./Components/QuestionsComponents/reponse-question/reponse-question.component')
   },
