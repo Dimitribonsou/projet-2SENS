@@ -76,7 +76,7 @@ export const routes: Routes = [
     loadComponent:()=>import('./Components/QuestionsComponents/reponse-question/reponse-question.component')
   },
   {
-    path:'reponses-users',
+    path:'reponses-users/:id',
     title:"Reponses de la question",
     loadComponent:()=>import('./Components/QuestionsComponents/response-question-users/response-question-users.component')
   },

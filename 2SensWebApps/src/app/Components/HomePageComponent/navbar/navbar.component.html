@@ -31,7 +31,14 @@
           </li>
         </ul>
 
-        <a class="text-decoration-none btn-one  " aria-current="page" [routerLink]="['/login']" >Connection</a>
+        <a *ngIf="!islogin" class="text-decoration-none btn-one  " aria-current="page" [routerLink]="['/login']" >Connection</a>
+        <div *ngIf="islogin" class="d-flex  justify-content-center align-items-center gap-3 profil">
+          <div class="profil d-flex flex-row justify-content-center align-items-center gap-2">
+            <img src="/assets/2sensImages/profil_man.png" alt="photo profil" width="50px" class="img-fluid rounded-circle" >
+            <span class="fw-bold">{{ nom }}</span>
+          </div>
+          <a class="text-decoration-none btn-two  " aria-current="page"  >Logout</a>
+        </div>
       </div>
     </div>
   </div>

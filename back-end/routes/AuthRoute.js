@@ -39,4 +39,13 @@ router.get("/UserList",authcontroller.AllUser);
 router.post("/NewQuestion", authcontroller.AddQuestions);
 router.post("/deleteQuestion/:id", authcontroller.DeleteQuestions);
 router.get("/QuestionsList", authcontroller.AllQuestion);
+router.get("/QuestionDetail/:id", authcontroller.DetailQuestion);
+router.get("/QuestionPerso/:id", authcontroller.AllUsersQuestion);
+//route pour la gestion des questions signaler
+router.post('/NewSignal',authcontroller.AddSignal)
+//router pour la gestion des reponses
+router.post("/NewResponse", authcontroller.AddResponses);
+router.get("/QuestionResponse/:id", authcontroller.AllQuestionReponses);
+router.get("/ResponseCount/:id", authcontroller.ReponseCount);
+
 module.exports=router

@@ -1,22 +1,20 @@
 <div class="container   p-0">
-  <div class="reponse-item ">
+  <div class="reponse-item  mb-2">
     <div class=" col-12 col-md-6">
       <div class="col">
         <img src="/assets/2sensImages/profil_man.png" alt="photo profil" class="img-fluid rounded-circle">
-        <span class="ms-3 ">JEAN ONANA</span>
+        <span class="ms-3 ">{{ username }}</span>
       </div>
       <div class="response-text col-12  d-flex flex-row flex-wrap col-md-6 bg-one text-white rounded-3 px-3 py-3">
-        <p class="text-justify">Pour avoir le passport vous devez traverser plusieurs etapes notament l’optention de votre
-          cni en suite aller vous faire enregistrer ,payer les frais necessaire et patienter 1 a 2semaines pour son
-          obtention .</p>
+        <p class="text-justify">{{ message }}</p>
         <div class="mt-1 d-flex justify-content-end w-100">
-          <span class="text-white">22:23</span>
+          <span class="text-white">{{ heure }}</span>
         </div>
       </div>
       <div class="row mt-2 response-number">
         <div class="col m-0">
           <span class="text-one m-0">Numero: </span>
-          <span class="text-two fw-bold ms-2">1</span>
+          <span class="text-two fw-bold ms-2">{{ numero }}</span>
         </div>
       </div>
     </div>

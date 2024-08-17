@@ -4,11 +4,13 @@ import { FooterComponent } from "../../HomePageComponent/footer/footer.component
 import { NavbarComponent } from "../../HomePageComponent/navbar/navbar.component";
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { AuthService } from '../../../Services/auth.service';
+import { loginType } from '../../../Types/loginType';
+import { NgIf } from '@angular/common';
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [RouterModule, FooterComponent, NavbarComponent,ReactiveFormsModule,FormsModule],
+  imports: [RouterModule, FooterComponent, NavbarComponent,ReactiveFormsModule,FormsModule,NgIf],
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss'
 })
@@ -27,19 +29,22 @@ export default class LoginComponent {
   SendData()
   {
         //inserer les infos de la question dans la base de donnee
-        const islogin:boolean =  this.authservice.isUserLogin(this.email,this.password)
-          console.log(" islogin : ",islogin)
-       if(islogin)
-       {
-        // rediriger vers la section des discutions
-        this.router.navigateByUrl('/discutions')
-        console.log("utilisateur connecter");
-       }
-       else
-       {
-        this.resetForm() ;
-        console.log("Erreur de connection !");
-       }
+         this.authservice.isUserLogin(this.email,this.password).subscribe(
+          (response)=>{
+            this.authservice.userData=response
+            if(response.statut)
+              {
+                this.authservice.islogin=true
+                   // Redirection vers la page d'accueil
+                 this.router.navigateByUrl('/discutions')
+              }
+              else
+              {
+                this.resetForm()
+              }
+          }
+         )
+
   }
   resetForm()
   {

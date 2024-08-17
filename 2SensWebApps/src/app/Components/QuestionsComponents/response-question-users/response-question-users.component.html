@@ -1,11 +1,11 @@
 <div class="container-fluid reponse">
   <div class="reponse-header d-flex justify-content-between align-items-center gap-3 border-bottom-4 border-primary">
     <div class="col ">
-      <!-- <a [routerLink]="['/questions']"><i class="bi bi-arrow-left me-md-5 me-3 text-one"></i></a> -->
+      <a [routerLink]="['/discutions']"><i class="bi bi-arrow-left me-md-5 me-3 text-one"></i></a>
       <!-- Button trigger modal -->
-    <a class="cursor-pointer" href="#" data-bs-toggle="modal" data-bs-target="#exampleModal">
+    <!-- <a class="cursor-pointer" href="#" data-bs-toggle="modal" data-bs-target="#exampleModal">
       <i class="bi bi-arrow-left me-md-5 me-3 text-one"></i>
-    </a>
+    </a> -->
 
 <!-- Modal -->
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -35,18 +35,18 @@
   </div>
 </div>
       <img src="/assets/2sensImages/profil_man.png" alt="photo profil" class="img-fluid rounded-circle" >
-      <span class="user-name ms-2 fw-bold">Bonsou dimitri</span>
+      <span class="user-name ms-2 fw-bold">{{ questiondetail[0].USERNAME }}</span>
     </div>
-    <div class="header-date d-flex flex-column gap-1 text-end ">
-       <span class="text-opacity">20/06/2024</span>
-       <span class="text-opacity">16:35:25</span>
+    <div class="header-date d-flex flex-column gap-1 text-end px-3">
+       <span class="text-opacity">{{ questiondetail[0].date | date }}</span>
+       <span class="text-opacity">{{ questiondetail[0].heure }}</span>
     </div>
   </div>
   <div class=" container question-item">
-   
+
     <div class="row  d-flex flex-column justify-content-center align-items-center gap-1">
-       <span class="text-two fw-bold my-3 text-center mt-5">Comment faire pour avoir le passport ?</span>
-       <p class="text-justify mt-2  text-md-center">Je desirais savoir toute les pieces necessaire pour obtenir un passport allant dans plus 20 pays en europe</p>
+       <span class="text-two fw-bold my-3 text-center mt-5 fs-5"> {{ questiondetail[0].titre }} ?</span>
+       <p class="text-justify mt-2  text-md-center">{{ questiondetail[0].DESCRIPTION }}</p>
     </div>
     <div class="row ">
       <span class="text-two">Pieces jointes</span>
@@ -59,24 +59,24 @@
     <div class="col col-md-6 mx-auto p-3 shadow my-3 rounded-3">
        <p class="text-md-center">seul les consultants peuvent répondre a une question vous êtes prier de selectionné la questions qui vous a le plus aider </p>
     </div>
-     <div class="row mt-3">
-       <span class="text-center text-opacity mt-3">24/04/2024</span>
-       <div class="reponse-text">
-        <app-reponse-item></app-reponse-item>
+    @if (responseQuestion.length>0) {
+      <div class="row mt-3" *ngFor="let reponse of responseQuestion">
+        <span class="text-center text-opacity mt-3">{{ reponse.date | date }}</span>
+        <div class="reponse-text">
+         <app-reponse-item
+          username="{{ reponse.USERNAME }}"
+          message="{{ reponse.message }}"
+          heure="{{ reponse.heure }}"
+          numero="{{ reponse.numero }}"
+         ></app-reponse-item>
+       </div>
       </div>
-     </div>
-     <div class="row mt-3 px-2">
-       <span class="text-center text-opacity mt-3">24/04/2024</span>
-       <div class="reponse-text">
-         <app-reponse-item></app-reponse-item>
-       </div>
-     </div>
-     <div class="row mt-3 px-2">
-       <span class="text-center text-opacity mt-3">24/04/2024</span>
-       <div class="reponse-text">
-         <app-reponse-item></app-reponse-item>
-       </div>
-     </div>
+    }
+    @else {
+      <div class="d-flex justify-content-center align-items-center"style="min-height: 100px;">
+        <p class="text-center fw-bold text-two fs-5">Aucune réponse n'a été enregistrer pour  votre question  </p>
+      </div>
+    }
 
   </div>
 </div>

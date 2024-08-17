@@ -1,6 +1,7 @@
 import { NgIf } from '@angular/common';
-import { Component, Input } from '@angular/core';
+import { Component, inject, Input } from '@angular/core';
 import { Router, RouterModule } from '@angular/router';
+import { QuestionService } from '../../../Services/question.service';
 
 @Component({
   selector: 'app-cardcomponent',
@@ -23,11 +24,19 @@ export class CardcomponentComponent {
   showbtnrepondre=true
   @Input()
   showbtnvoirreponse=false
+  @Input()
+  nbreponse:string='0'
+
 
   ReponseDetail(id:string )
   {
     const numberid=parseInt(id);
      this.router.navigateByUrl(`/reponses/${numberid}`);
+  }
+  ReponseList(id:string )
+  {
+    const numberid=parseInt(id);
+     this.router.navigateByUrl(`/reponses-users/${numberid}`);
   }
   Signaler(id:string )
   {

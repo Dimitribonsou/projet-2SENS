@@ -18,7 +18,7 @@ const ConnectUser = async (req, res, next) => {
       nom: null,
       email: null,
       mdp: null,
-      statut:false,
+      statut: false,
       message: null,
     };
     const email = req.body.email;
@@ -38,7 +38,7 @@ const ConnectUser = async (req, res, next) => {
           nom: null,
           email: null,
           mdp: null,
-          statut:false,
+          statut: false,
           message: "Email invalid",
         };
         res.json(data);
@@ -60,7 +60,7 @@ const ConnectUser = async (req, res, next) => {
             nom: null,
             email: null,
             mdp: null,
-            statut:false,
+            statut: false,
             message: "Mot de passe Invalid",
           };
           res.json(data);
@@ -76,7 +76,7 @@ const ConnectUser = async (req, res, next) => {
           nom: req.session.nom,
           email: req.session.email,
           mdp: req.session.password,
-          statut:true,
+          statut: true,
           message: "utilisateur connecter avec succes ! ",
         };
         // // si c'est un administrateur
@@ -96,11 +96,11 @@ const ConnectUser = async (req, res, next) => {
           nom: null,
           email: null,
           mdp: null,
-          statut:false,
+          statut: false,
           message: "Email et Mot de passe Incorect",
         };
         res.json(data);
-        return ;
+        return;
       }
     });
   } catch (err) {
@@ -236,7 +236,43 @@ const AllQuestion = async (req, res) => {
     db.query(q, (err, results) => {
       if (err)
         res
-          .satus(500)
+          .status(500)
+          .send(
+            "une erreur c'est produite lors de l'executtion de la requete "
+          );
+      res.send(results);
+    });
+  } catch (err) {
+    res.status(500).send("une erreur c'est produite : " + err);
+  }
+};
+const AllUsersQuestion = async (req, res) => {
+  try {
+    const idUsers = req.params.id;
+    const q =
+      "SELECT q.ID_QUESTION , titre ,DESCRIPTION,date(DATE_ENVOIE) as date,time(DATE_ENVOIE) as heure ,us.USERNAME ,us.ID_USER  FROM questions q INNER JOIN utilisateur us on us.ID_USER=q.ID_USER where us.ID_USER=?  ORDER by ID_QUESTION DESC ";
+    db.query(q, [idUsers], (err, results) => {
+      if (err)
+        res
+          .status(500)
+          .send(
+            "une erreur c'est produite lors de l'executtion de la requete "
+          );
+      res.send(results);
+    });
+  } catch (err) {
+    res.status(500).send("une erreur c'est produite : " + err);
+  }
+};
+const DetailQuestion = async (req, res) => {
+  try {
+    const id = req.params.id;
+    const q =
+      "SELECT DISTINCT q.ID_QUESTION , titre ,DESCRIPTION,date(DATE_ENVOIE) as date,time(DATE_ENVOIE) as heure ,us.USERNAME ,us.ID_USER FROM questions q INNER JOIN utilisateur us on us.ID_USER=q.ID_USER where q.ID_QUESTION= ? limit 1 ";
+    db.query(q, [id], (err, results) => {
+      if (err)
+        res
+          .status(500)
           .send(
             "une erreur c'est produite lors de l'executtion de la requete "
           );
@@ -247,6 +283,102 @@ const AllQuestion = async (req, res) => {
   }
 };
 //#######################################  gerer les reponses       ####################################
+const AddResponses = async (req, res) => {
+  try {
+    InsertReponse(req, res);
+  } catch (err) {
+    res.status(500).send("une erreur c'est produite : " + err);
+  }
+};
+InsertReponse = async (req, res) => {
+  let idUsers = 1;
+  if (req.session.idusers) {
+    idUsers = req.session.idusers;
+  }
+  let numero = 1;
+
+  const query =
+    "Select numero from reponses order by numero desc limit 1 ";
+  db.query(query, (err, results) => {
+    if (err)
+      res
+        .status(500)
+        .send(
+          "une erreur c'est produite lors de l'executtion de la requete "
+        );
+      numero=parseInt(results)+1
+  });
+  const q =
+    "INSERT INTO `reponses`( `ID_QUESTION`, `ID_USER_UTILISATEUR`, `MESSAGE`, `NUMERO`) VALUES (?,?,?,?)";
+
+  db.query(
+    q,
+    [req.body.idquestion, idUsers, req.body.message, numero],
+    (err) => {
+      if (err) throw err;
+      res.status(200).send("Reponse Publier avec success !");
+    }
+  );
+};
+
+const AllQuestionReponses = async (req, res) => {
+  try {
+    const idquestion = req.params.id;
+    const q =
+      "SELECT r.message, r.numero,DATE(r.DATE_HEURE) as date ,TIME(r.DATE_HEURE) as heure ,us.USERNAME from reponses r INNER join consultant c on c.ID_USER_UTILISATEUR=r.ID_USER_UTILISATEUR INNER JOIN utilisateur us on us.ID_USER=c.ID_USER WHERE r.ID_QUESTION=? ";
+    db.query(q, [idquestion], (err, results) => {
+      if (err)
+        res
+          .status(500)
+          .send(
+            "une erreur c'est produite lors de l'executtion de la requete "
+          );
+      res.send(results);
+    });
+  } catch (err) {
+    res.status(500).send("une erreur c'est produite : " + err);
+  }
+};
+const ReponseCount = async (req, res) => {
+  try {
+    const idquestion = req.params.id;
+    const q =
+      "SELECT COUNT(*) as nbreponse FROM reponses WHERE ID_QUESTION=? ";
+    db.query(q, [idquestion], (err, results) => {
+      if (err)
+        res
+          .status(500)
+          .send(
+            "une erreur c'est produite lors de l'executtion de la requete "
+          );
+      res.send(results);
+    });
+  } catch (err) {
+    res.status(500).send("une erreur c'est produite : " + err);
+  }
+};
+//########################################### gerer les signalements  ######################################
+const AddSignal = async (req, res) => {
+  try {
+    InsertSignal(req, res);
+  } catch (err) {
+    res.status(500).send("une erreur c'est produite : " + err);
+  }
+};
+InsertSignal = async (req, res) => {
+
+  let q =
+    "INSERT INTO `signalement`( `ID_QUESTION`, `LIBELLE`, `DESCRIPTION`) VALUES (?,?,?)";
+
+  db.query(
+    q,
+    [req.body.idquestion, req.body.titre, req.body.description],
+    (err) => {
+      if (err) throw err;
+      res.status(200).send("signalement enregistrer avec success !");
+    }
+  );
+};
 module.exports = {
   ConnectUser,
   AddUser,
@@ -257,4 +389,10 @@ module.exports = {
   AddQuestions,
   DeleteQuestions,
   AllQuestion,
+  DetailQuestion,
+  AllUsersQuestion,
+  AddResponses,
+  AllQuestionReponses,
+  AddSignal,
+  ReponseCount
 };

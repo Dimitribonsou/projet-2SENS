@@ -17,11 +17,11 @@
   <div class="card-stat col d-flex justify-content-between align-items-center gap-3">
      <div class="col ms-2 card-response">
        <span>Reponse :</span>
-       <span class="text-two fw-bold ms-2">15</span>
+         <span class="text-two fw-bold ms-2">{{nbreponse}}</span>
      </div>
      <div class="card-action d-flex justify-content-end align-items-center">
        <a *ngIf="showbtnrepondre"   class="btn-one me-3" (click)="ReponseDetail(idquestion )" >Details</a>
-       <a *ngIf="showbtnvoirreponse" class="btn-one " [routerLink]="['/reponses-users']"  >Voir les reponses</a>
+       <a *ngIf="showbtnvoirreponse" class="btn-one "  (click)="ReponseList(idquestion )"  >Voir les reponses</a>
        <a *ngIf="showbtnsignaler"  class="btn-two ms-4" (click)="Signaler(idquestion)"  >Signaler</a>
      </div>
   </div>

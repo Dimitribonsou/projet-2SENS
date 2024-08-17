@@ -15,19 +15,60 @@
       </div>
       <div class="form-content mt-3">
         <form action="" [formGroup]="formlogin" (ngSubmit)="SendData()">
-          <div class="col input-item my-3 ">
+          <div class="col input-item my-3">
             <i class="bi bi-envelope image"></i>
-             <input type="email" name="" id="" formControlName="email" [(ngModel)]="email" placeholder="Entrez votre email" class="form-control shadow-none rounded" required>
+            <input
+              type="email"
+              name=""
+              id=""
+              formControlName="email"
+              [(ngModel)]="email"
+              placeholder="Entrez votre email"
+              class="form-control shadow-none rounded"
+              required
+            />
           </div>
+          <div
+            *ngIf="formlogin.get('email')?.invalid && (formlogin.get('email')?.dirty || formlogin.get('email')?.touched)"
+            class="text-danger"
+          >
+            <div *ngIf="formlogin.get('email')?.errors?.['required']">Le champ email est requis.</div>
+            <div *ngIf="formlogin.get('email')?.errors?.['email']">L'email n'est pas valide.</div>
+          </div>
+
           <div class="col input-item my-3">
             <i class="bi bi-lock image"></i>
-             <input type="password" name="" id="" formControlName="password" [(ngModel)]="password" placeholder="Entrez votre mot de passe" class="form-control shadow-none rounded" required>
+            <input
+              type="password"
+              name=""
+              id=""
+              formControlName="password"
+              [(ngModel)]="password"
+              placeholder="Entrez votre mot de passe"
+              class="form-control shadow-none rounded"
+              required
+            />
           </div>
+          <div
+            *ngIf="formlogin.get('password')?.invalid && (formlogin.get('password')?.dirty || formlogin.get('password')?.touched)"
+            class="text-danger"
+          >
+            <div *ngIf="formlogin.get('password')?.errors?.['required']">Le champ mot de passe est requis.</div>
+            <div *ngIf="formlogin.get('password')?.errors?.['minlength']">Le mot de passe doit contenir au moins 8 caractères.</div>
+          </div>
+
           <div class="col my-2 d-flex justify-content-end">
-             <a class="text-one" [routerLink]="['/forgot-password']">mot de passe oublier ?</a>
+            <a class="text-one" [routerLink]="['/forgot-password']">mot de passe oublier ?</a>
           </div>
-          <div class="my-3 ">
-             <button type="submit" class="{{ formlogin.invalid ? 'btn-one' : 'btn-three' }} w-100" [disabled]="formlogin.invalid">Connection</button>
+
+          <div class="my-3">
+            <button
+              type="submit"
+              class="{{ formlogin.invalid ? 'btn-one' : 'btn-three' }} w-100"
+              [disabled]="formlogin.invalid"
+            >
+              Connection
+            </button>
           </div>
         </form>
         <div class="my-3 d-flex justify-content-start align-items-center gap-3 w-100">
