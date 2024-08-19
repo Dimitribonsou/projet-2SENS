@@ -18,7 +18,7 @@ export class FormcomponentComponent {
   formquestion:FormGroup=new FormGroup(
     {
        titre:new FormControl('', [Validators.required,Validators.maxLength(50)]),
-       description:new FormControl('', [Validators.required,Validators.minLength(100)]),
+       description:new FormControl('', [Validators.required,Validators.minLength(50)]),
        confirmation:new FormControl('',[Validators.required]),
        image1:new FormControl('',[Validators.nullValidator]),
        image2:new FormControl('',[Validators.nullValidator]),
@@ -30,12 +30,14 @@ export class FormcomponentComponent {
   SendData()
   {
     //verifier si les information de connection de l'utilisateur existe si c'est le cas cela supose qu'il est connecter
-    const loginInfo= this.authservice.userData
+    const loginInfo= localStorage.getItem('jwt_token')
     // if(loginInfo != null)
-    if(loginInfo == null)
+    if(loginInfo!= null)
     {
+      const id=localStorage.getItem('idusers') as string
+      const iduser=parseInt(id)
               //inserer les infos de la question dans la base de donnee
-        this.questionservice.AddQuestion(this.titre,this.description)
+        this.questionservice.AddQuestion(iduser,this.titre,this.description)
         //vider les champ du formulaire
         this.resetForm() ;
         // rediriger vers la section des discutions

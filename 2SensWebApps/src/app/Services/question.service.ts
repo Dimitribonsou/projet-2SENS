@@ -9,11 +9,12 @@ import { ResponseType } from '../Types/responseType';
 export class QuestionService {
   constructor(private http:HttpClient) { }
   url="http://localhost:3000";
-  AddQuestion(titre:string,description:string)
+  AddQuestion(idutilisateur:number,titre:string,description:string)
   {
      this.http.post(this.url.concat('/NewQuestion'),{
       titre:titre,
-      description:description
+      description:description,
+      iduser:idutilisateur
     }).subscribe(
       (response) => {
         console.log('Question ajoutée avec succès');
@@ -87,11 +88,12 @@ export class QuestionService {
    );
    return listequestions
   }
-  AddResponse(idquestion:number,description:string)
+  AddResponse(idutilisateur:number,idquestion:number,description:string)
   {
      this.http.post(this.url.concat('/NewResponse'),{
       idquestion:idquestion,
-      message:description
+      message:description,
+      iduser:idutilisateur
     }).subscribe(
       (response) => {
         console.log('reponse  ajoutée avec succès');

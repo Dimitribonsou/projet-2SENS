@@ -18,5 +18,14 @@ import { DatePipe, NgFor } from '@angular/common';
 export default class DiscutionsComponent {
   constructor(private router: Router){}
   questionservice=inject(QuestionService)
-  listeUsersQuestion:questionType[] = this.questionservice.getQuestionsByUsers(1)
+  listeUsersQuestion:questionType[]=[]
+  ngOnInit()
+  {
+    const userIds=  localStorage.getItem('idusers');
+    if(userIds!=null)
+      {
+        const id=parseInt(userIds)
+        this.listeUsersQuestion = this.questionservice.getQuestionsByUsers(id)
+      }
+  }
 }

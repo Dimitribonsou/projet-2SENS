@@ -30,13 +30,6 @@ export default class QuestionPublicComponent {
       console.log("nombre de reponse : "+reponse[0])
       return reponse
    }
-   ngOnInit()
-   {
-    console.log("fonction : "+this.nbReponse('1'))
-     const nb=this.nbReponse('1')
-     console.log("le nombre de reponse est : "+nb[0])
-
-     console.log("this : "+this.reponse)
-   }
+   
 
 }

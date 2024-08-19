@@ -3,6 +3,7 @@ const router = express.Router();
 const multer = require("multer");
 const session = require("express-session");
 const authcontroller = require("./../Controllers/AuthController");
+const authjwtcontroller=require('./../Controllers/loginwidthTokenController')
 //DEFINIR LE CHEMIN DE STOCKAGE DES FICHIERS
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
@@ -34,6 +35,14 @@ router.post("/deleteUser/:id", authcontroller.Deleteusers);
 router.post("/UpdateUser/:id", authcontroller.UpdateUserInfo);
 router.get("/deconnect",authcontroller.DeconnectUser);
 router.get("/UserList",authcontroller.AllUser);
+
+//implementation de l'authentification jwt 
+router.post("/Loginjwt", authjwtcontroller.ConnectUser);
+// Utilisation du middleware de vérification du jeton JWT
+// router.use("/protected", authjwtcontroller.verifyToken, (req, res) => {
+//   // Accès aux ressources protégées
+//   res.json({ message: `Bienvenue ${req.username} !` });
+// });
 
 //router pour la gestion des question
 router.post("/NewQuestion", authcontroller.AddQuestions);

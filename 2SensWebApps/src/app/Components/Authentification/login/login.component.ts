@@ -31,16 +31,27 @@ export default class LoginComponent {
         //inserer les infos de la question dans la base de donnee
          this.authservice.isUserLogin(this.email,this.password).subscribe(
           (response)=>{
-            this.authservice.userData=response
-            if(response.statut)
+            //stocker les s de l'utilisateur dans le localstorage
+            if(response.token!=undefined)
+            {
+              const  tokenlogin=response.token.toString()
+               localStorage.setItem('jwt_token',tokenlogin );
+               localStorage.setItem('nomutilisateur',response.nom );
+               localStorage.setItem('idusers',response.iduser.toString());
+              }
+          //verifier si la variable userlogin existe si oui modifier la valeur de la variable islogin du service authservice
+            const userlogin=  localStorage.getItem('jwt_token');
+            if(userlogin!=null)
               {
                 this.authservice.islogin=true
+                console.log(" valeur de test d'authentification : "+this.authservice.islogin)
                    // Redirection vers la page d'accueil
                  this.router.navigateByUrl('/discutions')
               }
               else
               {
                 this.resetForm()
+                this.router.navigateByUrl('/login')
               }
           }
          )

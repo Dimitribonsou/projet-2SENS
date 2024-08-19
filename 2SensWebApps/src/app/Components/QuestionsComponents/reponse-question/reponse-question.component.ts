@@ -36,7 +36,9 @@ ngOnInit()
   SendResponse(id:string)
   {
     const idquestion=parseInt(id);
-    this.questionservice.AddResponse(idquestion,this.response);
-    console.log("reponse ajouter a la question : "+idquestion)
+    const idus =localStorage.getItem('idusers') as string;
+    const iduser=parseInt(idus)
+    this.questionservice.AddResponse(iduser,idquestion,this.response);
+    this.router.navigateByUrl('/questions')
   }
 }

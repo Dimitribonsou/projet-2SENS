@@ -207,17 +207,17 @@ const AddQuestions = async (req, res) => {
   }
 };
 InsertQuestion = async (req, res) => {
-  let idUsers = 1;
-  if (req.session.idusers) {
-    idUsers = req.session.idusers;
-  }
   let q =
     "INSERT INTO `questions`(`ID_USER`, `TITRE`, `DESCRIPTION`) VALUES (?,?,?)";
 
-  db.query(q, [idUsers, req.body.titre, req.body.description], (err) => {
-    if (err) throw err;
-    res.status(200).send("Question Publier avec success !");
-  });
+  db.query(
+    q,
+    [req.body.iduser, req.body.titre, req.body.description],
+    (err) => {
+      if (err) throw err;
+      res.status(200).send("Question Publier avec success !");
+    }
+  );
 };
 
 const DeleteQuestions = async (req, res) => {
@@ -291,22 +291,16 @@ const AddResponses = async (req, res) => {
   }
 };
 InsertReponse = async (req, res) => {
-  let idUsers = 1;
-  if (req.session.idusers) {
-    idUsers = req.session.idusers;
-  }
+  let idUsers = req.body.iduser;
   let numero = 1;
 
-  const query =
-    "Select numero from reponses order by numero desc limit 1 ";
+  const query = "Select numero from reponses order by numero desc limit 1 ";
   db.query(query, (err, results) => {
     if (err)
       res
         .status(500)
-        .send(
-          "une erreur c'est produite lors de l'executtion de la requete "
-        );
-      numero=parseInt(results)+1
+        .send("une erreur c'est produite lors de l'executtion de la requete ");
+    numero = parseInt(results) + 1;
   });
   const q =
     "INSERT INTO `reponses`( `ID_QUESTION`, `ID_USER_UTILISATEUR`, `MESSAGE`, `NUMERO`) VALUES (?,?,?,?)";
@@ -342,8 +336,7 @@ const AllQuestionReponses = async (req, res) => {
 const ReponseCount = async (req, res) => {
   try {
     const idquestion = req.params.id;
-    const q =
-      "SELECT COUNT(*) as nbreponse FROM reponses WHERE ID_QUESTION=? ";
+    const q = "SELECT COUNT(*) as nbreponse FROM reponses WHERE ID_QUESTION=? ";
     db.query(q, [idquestion], (err, results) => {
       if (err)
         res
@@ -366,7 +359,6 @@ const AddSignal = async (req, res) => {
   }
 };
 InsertSignal = async (req, res) => {
-
   let q =
     "INSERT INTO `signalement`( `ID_QUESTION`, `LIBELLE`, `DESCRIPTION`) VALUES (?,?,?)";
 
@@ -394,5 +386,5 @@ module.exports = {
   AddResponses,
   AllQuestionReponses,
   AddSignal,
-  ReponseCount
+  ReponseCount,
 };

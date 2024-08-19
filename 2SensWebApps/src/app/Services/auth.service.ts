@@ -12,11 +12,11 @@ public userData!:loginType
 islogin:boolean =false
   constructor(private http:HttpClient,private router:Router) { }
   url="http://localhost:3000";
-  private isAuthSubject = new BehaviorSubject<boolean>(false);
-  isAuth$ = this.isAuthSubject.asObservable();
+
   isUserLogin(email:string,password:string): Observable<loginType>
   {
-     return this.http.post(this.url.concat('/Login'),{email:email,password:password}) as Observable<loginType>;
+    //  return this.http.post(this.url.concat('/Login'),{email:email,password:password}) as Observable<loginType>;
+     return this.http.post(this.url.concat('/Loginjwt'),{email:email,password:password}) as Observable<loginType>;
   }
   CreateAccount(username:string,password:string,email:string,tel:string)
   {
@@ -33,5 +33,19 @@ islogin:boolean =false
         console.error('Error user reguster:', error);
       }
     );
+  }
+  logout() {
+    localStorage.removeItem('jwt_token');
+    localStorage.removeItem('nomutilisateur');
+    localStorage.removeItem('idusers');
+    this.router.navigateByUrl('/home')
+  }
+  ngOnInit()
+  {
+    const userlogin=  localStorage.getItem('jwt_token');
+    if(userlogin!=null)
+    {
+      this.islogin=true
+    }
   }
 }

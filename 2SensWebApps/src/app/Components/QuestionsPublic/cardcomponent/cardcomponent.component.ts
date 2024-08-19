@@ -27,20 +27,44 @@ export class CardcomponentComponent {
   @Input()
   nbreponse:string='0'
 
-
+ userauth=localStorage.getItem('jwt_token')
   ReponseDetail(id:string )
   {
-    const numberid=parseInt(id);
-     this.router.navigateByUrl(`/reponses/${numberid}`);
+    if(this.userauth!=null)
+    {
+      const numberid=parseInt(id);
+      this.router.navigateByUrl(`/reponses/${numberid}`);
+    }
+    else
+    {
+      this.router.navigateByUrl('/login')
+    }
+
   }
   ReponseList(id:string )
   {
-    const numberid=parseInt(id);
-     this.router.navigateByUrl(`/reponses-users/${numberid}`);
+    if(this.userauth!=null)
+    {
+      const numberid=parseInt(id);
+      this.router.navigateByUrl(`/reponses-users/${numberid}`);
+    }
+    else
+    {
+      this.router.navigateByUrl('/login')
+    }
+
   }
   Signaler(id:string )
   {
-    const numberid=parseInt(id);
-     this.router.navigateByUrl(`/signaler/${numberid}`);
+    if(this.userauth!=null)
+    {
+      const numberid=parseInt(id);
+      this.router.navigateByUrl(`/signaler/${numberid}`);
+    }
+    else
+    {
+      this.router.navigateByUrl('/login')
+    }
+
   }
 }
