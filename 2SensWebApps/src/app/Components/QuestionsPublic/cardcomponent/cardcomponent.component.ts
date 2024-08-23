@@ -26,8 +26,21 @@ export class CardcomponentComponent {
   showbtnvoirreponse=false
   @Input()
   nbreponse:string='0'
-
+ questionservice=inject(QuestionService)
  userauth=localStorage.getItem('jwt_token')
+ ngOnInit()
+ {
+   const id=parseInt(this.idquestion)
+   this.questionservice.ResponseCount(1).subscribe(
+    (response) => {
+      console.log("response serveur dimidev : " + response.nbreponse);
+    },
+    (error) => {
+      console.error('Error getting response count:', error);
+    }
+  );
+
+ }
   ReponseDetail(id:string )
   {
     if(this.userauth!=null)
@@ -39,7 +52,6 @@ export class CardcomponentComponent {
     {
       this.router.navigateByUrl('/login')
     }
-
   }
   ReponseList(id:string )
   {
@@ -52,7 +64,6 @@ export class CardcomponentComponent {
     {
       this.router.navigateByUrl('/login')
     }
-
   }
   Signaler(id:string )
   {
@@ -65,6 +76,5 @@ export class CardcomponentComponent {
     {
       this.router.navigateByUrl('/login')
     }
-
   }
 }

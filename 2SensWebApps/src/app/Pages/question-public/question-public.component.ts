@@ -27,9 +27,8 @@ export default class QuestionPublicComponent {
 
      const id=parseInt(idquestion)
        const  reponse=this.questionservice.ResponseCount(id)
-      console.log("nombre de reponse : "+reponse[0])
       return reponse
    }
-   
+
 
 }

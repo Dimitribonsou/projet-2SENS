@@ -336,7 +336,8 @@ const AllQuestionReponses = async (req, res) => {
 const ReponseCount = async (req, res) => {
   try {
     const idquestion = req.params.id;
-    const q = "SELECT COUNT(*) as nbreponse FROM reponses WHERE ID_QUESTION=? ";
+    const q =
+      "SELECT COUNT(ID_QUESTION) as nbreponse FROM reponses WHERE ID_QUESTION=? ";
     db.query(q, [idquestion], (err, results) => {
       if (err)
         res
@@ -344,7 +345,8 @@ const ReponseCount = async (req, res) => {
           .send(
             "une erreur c'est produite lors de l'executtion de la requete "
           );
-      res.send(results);
+      console.log(results);
+      res.json(results);
     });
   } catch (err) {
     res.status(500).send("une erreur c'est produite : " + err);

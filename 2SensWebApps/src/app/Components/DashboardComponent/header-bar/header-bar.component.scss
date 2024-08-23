@@ -1,0 +1,65 @@
+.h100
+{
+    height: 100vh;
+}
+.lien
+{
+
+    padding: 5px 25px;
+    border-top-left-radius: 25px;
+    border-bottom-left-radius: 25px;
+    transition: background 0.4s ease-in-out;
+    cursor: pointer;
+}
+.sidebar
+{
+    border-right:3px solid gray;
+    /* min-width: 80px; */
+}
+.header-nav
+{
+    border-bottom: 3px solid gray ;
+}
+.sidebar .sidebar-icon
+{
+    color: black;
+}
+.lien:hover
+{
+
+    background-color: rgb(71, 71, 251);
+    padding: 5px 25px;
+    border-top-left-radius: 25px;
+    border-bottom-left-radius: 25px;
+    color: white;
+}
+.sidebar-link
+{
+    color: black;
+}
+.active{
+    background-color: rgb(71, 71, 251);
+    padding: 5px 25px;
+    border-top-left-radius: 25px;
+    border-bottom-left-radius: 25px;
+    color: white;
+}
+.lien:hover .sidebar-link ,.active .sidebar-link ,.lien:hover  .sidebar-icon ,.active .sidebar-icon
+{
+    color: white;
+}
+@media screen and (max-width:700px){
+    .bi{
+        font-size: 5px;
+        width: 15px;
+    }
+    .deconnect.btn
+    {
+        background-color: transparent;
+        border: none;
+        justify-content: center;
+    }
+}
+@media screen and (max-width:400px){
+
+}

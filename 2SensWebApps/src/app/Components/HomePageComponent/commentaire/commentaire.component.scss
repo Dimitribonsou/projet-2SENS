@@ -6,3 +6,12 @@
 {
   cursor: pointer;
 }
+.card-comment
+{
+  min-width: 300px;
+}
+.comment-item
+{
+  display: flex;
+  flex-wrap: wrap;
+}

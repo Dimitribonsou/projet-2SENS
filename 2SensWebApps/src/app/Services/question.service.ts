@@ -139,19 +139,8 @@ export class QuestionService {
       }
     );
   }
-  ResponseCount(id:number)
-  {
-     let count:any[]=[]
-     this.http.get(this.url.concat(`/ResponseCount/${id}`)).subscribe(
-      (response) => {
-        const  countreponse=response as {nbreponse:string}[]
-        count=countreponse
-        console.log('nombre de reponse retourner avec succès : '+count);
-      },
-      (error: HttpErrorResponse) => {
-        console.error('Error adding  response count:', error);
-      }
-    );
-    return count
+  ResponseCount(id: number): Observable<{ nbreponse: string }> {
+    return this.http.get<{ nbreponse: string }>(this.url.concat(`/ResponseCount/${id}`));
   }
+
 }
