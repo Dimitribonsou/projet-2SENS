@@ -1,10 +1,12 @@
-const mysql=require('mysql');
-const express = require('express');
+import  mysql from 'mysql';
+import dotenv from 'dotenv'
+// Configurer l'acces aux variables d'environnement
+dotenv.config();
 const db=mysql.createConnection({
-    host:'localhost',
-    user:'root',
-    password:'dimi123',
-    database:'2senswebapp_final_db'
+    host:process.env.HOST,
+    user:process.env.USER,
+    password:process.env.PASSWORD,
+    database:process.env.DB_NAME
 })
 
 db.connect((err)=>
@@ -13,4 +15,4 @@ db.connect((err)=>
         console.log("connection bien etablie")
 })
 
-module.exports=db;
+export default db;

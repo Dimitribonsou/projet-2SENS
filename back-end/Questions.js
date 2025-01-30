@@ -1,4 +1,4 @@
-const mongoose = require("mongoose");
+import mongoose from "mongoose";
 
 const QuestionSchema = mongoose.Schema({
   libelle: String,
@@ -6,4 +6,4 @@ const QuestionSchema = mongoose.Schema({
 });
 
 const model = mongoose.model("Questions", QuestionSchema);
-module.exports = model;
+export default model;

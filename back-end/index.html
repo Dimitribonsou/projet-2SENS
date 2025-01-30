@@ -6,34 +6,57 @@
     <title>teste tuto</title>
 </head>
 <style>
+    *{
+        box-sizing: border-box;
+    }
     summary
     {
-        width: 200px;
-        padding: 15px 10px;
+        width: 500px;
+        padding: 15px 25px;
         background-color: #f1f1f1f1;
         cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        color: teal;
+        font-weight: bold;
     }
     details
     {
-        width: 200px;
+        width: 500px;
         height: fit-content;
         margin:25px  auto;
-        padding: 10px 15px;
     }
     details p
     {
         padding: 0;
         margin: 0;
-        background-color: aqua;
+        background-color: #f1f1f1f1;
         width: 100%;
-        padding: 15px 10px;
+        padding: 10px 25px;
+        font-size: 20px;
     }
+summary {
+    list-style: none; /* Supprime l'icône par défaut */
+} 
+
+
+summary:after {
+    content: "▶"; /* Icône personnalisée */
+    color: teal; /* Couleur de l'icône */
+    font-size: 1.2em; /* Taille de l'icône */
+    margin-left: 5px; /* Espace entre le texte et l'icône */
+    float: right; /* Positionne l'icône à droite */
+}
+
+details[open] summary:after {
+    content: "▼"; /* Icône lors de l'ouverture */
+}
 </style>
 <body>
     <details>
         <summary>dimdev C'est Qui ?</summary>
-       <p> dimidev est un jeunne developpeur cometent exercant dans les technologie javascript</p>
-        
+       <p> dimidev est un jeune developpeur competent exercant dans les technologies javascript</p>
     </details>
 </body>
 </html>

@@ -1,9 +1,9 @@
-const express = require("express");
+import express from  "express";
 const router = express.Router();
-const multer = require("multer");
-const session = require("express-session");
-const authcontroller = require("./../Controllers/AuthController");
-const authjwtcontroller=require('./../Controllers/loginwidthTokenController')
+import multer  from  "multer";
+import session  from  "express-session";
+import authcontroller  from  "./../Controllers/AuthController.js";
+import authjwtcontroller  from  "./../Controllers/loginwidthTokenController.js";
 //DEFINIR LE CHEMIN DE STOCKAGE DES FICHIERS
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
@@ -57,4 +57,4 @@ router.post("/NewResponse", authcontroller.AddResponses);
 router.get("/QuestionResponse/:id", authcontroller.AllQuestionReponses);
 router.get("/ResponseCount/:id", authcontroller.ReponseCount);
 
-module.exports=router
+export default router;

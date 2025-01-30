@@ -1,5 +1,5 @@
 //importer le fichier de connection
-const connection = require("./../connection");
+import  connection from "./../connection.js";
 const newAdresse = (req, res) => {
   const emailAdresse = req.body.email;
 
@@ -66,7 +66,10 @@ async function verifyGoogleEmail(email) {
     return false;
   }
 }
-module.exports = {
+
+
+
+export default {
   newAdresse,
-  newComment,
+  newComment
 };

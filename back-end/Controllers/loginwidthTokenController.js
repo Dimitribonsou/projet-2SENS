@@ -1,7 +1,10 @@
-const bcrypt = require("bcrypt");
-const jwt = require("jsonwebtoken");
-const db = require("./../connection");
-const JWT_SECRET="loginjwt20242sens@gmail.com"
+import  bcrypt from "bcrypt";
+import jwt  from  "jsonwebtoken";
+import db  from  "./../connection.js";
+import dotenv from 'dotenv'
+// Configurer l'acces aux variables d'environnement
+dotenv.config();
+const  JWT_SECRET = process.env.JWT_SECRET;
 // Fonction pour générer un jeton JWT
 function generateToken(userId, username) {
   const token = jwt.sign({ userId, username }, JWT_SECRET, {
@@ -73,8 +76,9 @@ const ConnectUser = async (req, res, next) => {
   }
 };
 
-
-module.exports = {
+const authjwtcontroller={
   ConnectUser,
   verifyToken
 };
+
+export default authjwtcontroller;

@@ -1,7 +1,6 @@
-const { json } = require("body-parser");
-const db = require("./../connection");
+import  db from "./../connection.js";
 //middleware our le cryptage
-const bcrypt = require("bcrypt");
+import  bcrypt from "bcrypt";
 
 //###############################################  gerer l'authentification des utilisateurs #################################
 
@@ -115,7 +114,7 @@ const AddUser = async (req, res) => {
     res.status(500).send("une erreur c'est produite : " + err);
   }
 };
-InsertUser = async (req, res) => {
+const InsertUser = async (req, res) => {
   const password = req.body.password;
   console.log(password);
   const passwordhached = await hashPassword(password);
@@ -137,7 +136,7 @@ const UpdateUserInfo = async (req, res) => {
     res.status(500).send("une erreur c'est produite : " + err);
   }
 };
-UpdateUser = async (req, res) => {
+const UpdateUser = async (req, res) => {
   const id = req.params.id;
   const password = req.body.password;
   console.log(password);
@@ -206,7 +205,7 @@ const AddQuestions = async (req, res) => {
     res.status(500).send("une erreur c'est produite : " + err);
   }
 };
-InsertQuestion = async (req, res) => {
+const InsertQuestion = async (req, res) => {
   let q =
     "INSERT INTO `questions`(`ID_USER`, `TITRE`, `DESCRIPTION`) VALUES (?,?,?)";
 
@@ -290,7 +289,7 @@ const AddResponses = async (req, res) => {
     res.status(500).send("une erreur c'est produite : " + err);
   }
 };
-InsertReponse = async (req, res) => {
+const InsertReponse = async (req, res) => {
   let idUsers = req.body.iduser;
   let numero = 1;
 
@@ -360,7 +359,7 @@ const AddSignal = async (req, res) => {
     res.status(500).send("une erreur c'est produite : " + err);
   }
 };
-InsertSignal = async (req, res) => {
+const InsertSignal = async (req, res) => {
   let q =
     "INSERT INTO `signalement`( `ID_QUESTION`, `LIBELLE`, `DESCRIPTION`) VALUES (?,?,?)";
 
@@ -373,7 +372,7 @@ InsertSignal = async (req, res) => {
     }
   );
 };
-module.exports = {
+const authcontroller={
   ConnectUser,
   AddUser,
   AllUser,
@@ -390,3 +389,4 @@ module.exports = {
   AddSignal,
   ReponseCount,
 };
+export default authcontroller;  
